@@ -69,7 +69,7 @@ export default async (req, res) => {
 
   const measurements = await client.fetch('*[_type == "measurement"] | order(_createdAt desc)');
 
-  if (aqi < measurements[0].aqi * 0.5) {
+  if (measurements.length > 0 && aqi < measurements[0].aqi * 0.5) {
     const status = {
       status: "spurious reading",
     };
